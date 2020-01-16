@@ -16,15 +16,15 @@ def get_follower_or_following(target_username, follower_or_following):
     except:
         return {"message": "Wrong argument. It must be 'follower' or 'following'", "users": []}
 
-    s = requests.Session()
-    r = s.get("https://www.instagram.com/")
-    csrf_token = re.search('"csrf_token":"(.*?)"', r.text)[1]
-    s.headers.update({"X-CSRFToken": csrf_token})
-    my_username = settings["my_username"]
-    my_password = settings["my_password"]
-    login_post = {"username": my_username, "password": my_password}
     try:
-        login_response = s.post("https://www.instagram.com/accounts/login/ajax/", data=login_post).json()
+        s = requests.Session()
+        r = s.get("https://www.instagram.com/")
+        csrf_token = re.search('"csrf_token":"(.*?)"', r.text)[1]
+        s.headers.update({"X-CSRFToken": csrf_token})
+        my_username = settings["my_username"]
+        my_password = settings["my_password"]
+        login_post_data = {"username": my_username, "password": my_password}
+        login_response = s.post("https://www.instagram.com/accounts/login/ajax/", data=login_post_data).json()
         auth = login_response["authenticated"]
     except:
         auth = False
@@ -64,4 +64,3 @@ def get_follower_or_following(target_username, follower_or_following):
         if end_cursor is None:
             break
     return {"message": "success", "users": users}
-
