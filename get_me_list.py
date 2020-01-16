@@ -34,7 +34,7 @@ def get_follower_or_following(target_username, follower_or_following):
         resp = s.get("https://www.instagram.com/" + target_username)
         resp_code = resp.status_code
     except:
-        resp_code = "Bu altyapının üstüne vokal yazmak kolay mı lan!"
+        resp_code = "https://www.youtube.com/watch?v=lHYC06HzCrg"
     if resp_code != 200:
         return {"message": "Wrong target name or bad internet connection", "users": []}
     
