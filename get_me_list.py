@@ -4,13 +4,11 @@ import json
 
 
 def get_follower_or_following(target_username, follower_or_following):
-
-  settings = {
-    "follower": {"hash": "c76146de99bb02f6415203be841dd25a", "edge_name": "edge_followed_by"},
-    "following": {"hash": "d04b0a864b4b54837c0d870b0e77e076", "edge_name": "edge_follow"},
-    "my_username": my_username, "my_password": my_password}
-
-
+    settings = {
+        "follower": {"hash": "c76146de99bb02f6415203be841dd25a", "edge_name": "edge_followed_by"},
+        "following": {"hash": "d04b0a864b4b54837c0d870b0e77e076", "edge_name": "edge_follow"},
+        "my_username": my_username, "my_password": my_password}
+    
     try:
         query_hash = settings[follower_or_following]["hash"]
     except:
